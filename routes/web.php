@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,10 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/google-auth/redirect', [GoogleAuthController::class, 'redirect'])->name('google-auth.redirect');
+
+Route::get('/google-auth/callback', [GoogleAuthController::class, 'callback']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
